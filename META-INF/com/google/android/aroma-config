@@ -1,0 +1,710 @@
+################################################################################################################################################################# 
+ini_set("force_colorspace", "rgba");
+ini_set("rom_name",             "SUPERSPEEDPORT");
+ini_set("rom_version",          "V1.0");
+ini_set("rom_author",           "@Arianoxx");
+ini_set("rom_device",           "S6/S6 edge");
+ini_set("rom_date",             "18.01.2018");
+#################################################################################################################################################################
+##
+anisplash(
+    3,
+    "splash/SSP", 1500
+);
+
+fontresload( "0", "ttf/Roboto-Regular.ttf;", "12" );
+theme("material");
+#################################################################################################################################################################
+viewbox(
+"WELCOME",
+"INSTALL <b>"+
+ini_get("rom_name")+
+"</b> FOR <b>"+ini_get("rom_device")+"</b>.\n\n"+
+"INFORMATION OF THE ROM:\n\n"+
+"<b><#009485> THE NAME \t:</#></b> <b><#009485>"+ini_get("rom_name")+"</#></b>\n"+
+"<b><#009485> THE VERSION\t:</#></b> <b><#009485>"+ini_get("rom_version")+"</#></b>\n"+
+"<b><#009485> THE DATE\t:</#></b> <b><#009485>"+ini_get("rom_date")+"</#></b>\n"+
+"<b><#009485> THE DEVELPER\t:</#></b> <b><#009485>"+ini_get("rom_author")+"</#></b>\n"+
+"<b><#f00> ONLY FOR S6/S6 edge</#></b>\n\n\n"+	
+"<#ff0000>Credits to :</#>\n\n"+	
+"<#000000>SPECIAL THANKS TO @enes2002, FOLLOW HIS WORK</#>\n"+	
+"<#000000>@Francesco_Raimondi for graphics</#>\n"+
+"<#000000>@AlexisXDA for his help</#>\n"+
+"<#000000>@Noxx for his kernel</#>\n"+
+"<#009485>PRESS NEXT TO CONTINUE</#></b>",
+"@welcome"
+);
+#################################################################################################################################################################
+agreebox(
+"TERMS AND CONDITIONS",
+"TERMS AND CONDITIONS",
+"@license",
+resread("license.txt"),
+"I AGREE WITH TERMS AND CONDITIONS",
+"YOU MUST AGREE WITH TERMS AND CONDITIONS FIRST"
+);
+#################################################################################################################################################################
+textbox(
+"CHANGE LOG",
+"ROM CHANGE LOG",
+"@agreement",
+resread("changelog.txt")
+);
+#################################################################################################################################################################
+checkbox(
+"OPTIONS",
+"SELECT WHAT YOU WANT TO DO:",
+"@personalize",
+"opt.prop",
+"INSTALLTION OPTIONS",                                                                                "",          2,
+"BACKUP EFS","RECOMMENDED",                                                  0, 
+"SAFE FORMAT","WIPE USER DATA WITHOUT INTERNAL STORAGE",                                               0, 
+"HARD FORMAT","WARNING: DELETE ALL DATA PARTITION WITH INTERNAL STORAGE",                              0  
+);
+#################################################################################################################################################################
+selectbox(
+	  "920 or 925?",
+	  "Flat or Edge?",
+	  "icons/update",
+	  "model.prop",
+
+	  "<#009485>Choose which kernel you want :</#>",	"",	                               		                            					2, #-- Group 1. key = "selected.1"
+	  "G920 F/I  Stock Kernel",				"I have regular S6: G920F or G920I model",	1,	#-- selected.1 = 1
+	  "G925 F/I  Stock Kernel",      			"I have S6 Edge: G925F or G925I model",			0,	#-- selected.1 = 2
+	  "G920 T/W8 Stock Kernel",				"I have Tmobile S6: G920T or G920W8 model",	0,	#-- selected.1 = 3
+	  "G925 T/W8 Stock Kernel",      		"I have Tmobile S6 Edge: G925T or G925W8 model",			0	#-- selected.1 = 4
+);
+#################################################################################################################################################################
+form(
+    "CSC",
+    "Select here which CSC Variant you want to install to your device:",
+    "icons/install",
+    "csc.prop",
+  #
+  # Type:
+  #  - group              = Group
+  #  - select             = Select Item
+  #  - select.selected    = Selected Select Item
+  #  - check              = Checkbox Item
+  #  - check.checked      = Checked Checkbox Item
+  #  - hide               = Hidden
+  #
+  #-------------+-----------------------[ Selectbox Without Group ]------------------------------#
+  # PROP ID     | TITLE            |  SUBTITLE                                   |    Type       #
+  #-------------+--------+-------------------------------------------------------+---------------#
+	"CSC",		"CSC Selection",	"",							"group",
+	"AME",		"AME",			"France Multi-CSC contains: AME, MEO, SFR",		"select",
+	"BOG",		"BOG",			"France Bouygues branded",				"select",
+	"CHE",		"CHE",			"Chile Multi-CSC contains: CHE, CHV, CHX",		"select",
+	"DBT",		"DBT",			"OMC Multi-CSC. I can't list all CSC files here (too many csc files), most are in here check it out",		"select",
+	"DRE",		"DRE",			"Austria 3 Hutchison branded",				"select",
+	"DTM",		"DTM",			"T-Mobile Multi-CSC contains: COA, COS, CRO, DCO, DHR, DNL, DPL, DTM, MAX, MBM, TMH, TMS, TMZ, TNL, TPL, TRG",	"select",
+	"EVR",		"EVR",			"United Kingdom EE branded",				"select",
+	"FTM",		"FTM",			"Orange branded Multi-CSC contains: AMO, FTM, OPV, ORO, ORS",	"select",
+	"H3G",		"H3G",			"United Kingdom H3G branded",				"select",
+	"HTS",		"HTS",			"Sweden Tre branded",					"select",
+	"O2U",		"O2U",			"United Kingdom Multi-CSC contains: O2U, XEC",		"select",
+	"OPS",		"OPS",			"Australia Optus branded",				"select",
+	"OPT",		"OPT",			"Portugal Optimus branded",				"select",
+	"PRT",		"PRT",			"Poland Play branded",					"select",
+	"SKC",		"SKC",			"Korea Multi-CSC (N-Variant) contains: KTC, LUC, SKC",	"select",
+	"TEL",		"TEL",			"Australia Telstra branded",				"select",
+	"TGY",		"TGY",			"Hong Kong unbranded (Qualcom, make EFS backup!)",	"select",
+	"TNZ",		"TNZ",			"New Zealand unbranded",				"select",
+	"UPO",		"UPO",			"Paraguay Multi-CSC contains: ALE, ANC, BVO, PEO, PNT, PSN, PSP, PVT, UPO, UYO",				"select",
+	"VAU",		"VAU",			"Australia Vodafone branded",				"select",
+	"VD2",		"VD2",			"Vodafone Multi-CSC contains: ATL, AVF, CNX, CYV, MOB, MTL, OMN, PRO, SIM, SWC, TCL, VD2, VDC, VDF, VDH, VDI, VGR, VIP, VOD, XFV",													"select",
+	"WIN",		"WIN",			"Italy Wind branded",					"select",
+	"XAA",		"XAA",			"USA Multi-CSC (Qualcom, make EFS backup!) contains: ACG, ATT, BST, CCT, GCF, LRA, SPR, TFN, TMB, USC, VMU, VZW, XAA, XAS",													"select",
+	"XAC",		"XAC",			"Canada Multi-CSC (W-Variant) contains: BMC, BWA, CHR, ESK, FMC, GLW, KDO, MTB, RWC, TLS, VMC, VTR, XAC",		"select",
+	"XID",		"XID",			"Indonesia unbranded",					"select",
+	"XSA",		"XSA",			"Australia unbranded",					"select"
+);
+
+if (prop("csc.prop","CSC")=="ATT" || prop("csc.prop","CSC")=="TMB" || prop("csc.prop","CSC")=="TMK" || prop("csc.prop","CSC")=="VZW" || prop("csc.prop","CSC")=="CHC" || prop("csc.prop","CSC")=="TGY" || prop("csc.prop","CSC")=="XAA" || prop("csc.prop","CSC")=="XAC") then
+alert( "Warning", "I detected that you selected a qualcom csc ported file. To make sure nothing can go wrong, please be sure to have an EFS backup in TWRP just for the case something goes wrong. It's much easier to you if you got such a backup then searching for a solution when EFS is messed up!");
+endif;
+
+if prop("csc.prop","CSC")=="AME" then
+form(
+    "Multi-CSC",
+    "You have selected a multi-csc!",
+    "icons/install",
+    "cscmulti.prop",
+  #
+  # Type:
+  #  - group              = Group
+  #  - select             = Select Item
+  #  - select.selected    = Selected Select Item
+  #  - check              = Checkbox Item
+  #  - check.checked      = Checked Checkbox Item
+  #  - hide               = Hidden
+  #
+  #-------------+-----------------------[ Selectbox Without Group ]------------------------------#
+  # PROP ID     | TITLE            |  SUBTITLE                                   |    Type       #
+  #-------------+--------+-------------------------------------------------------+---------------#
+	"CSC",		"France Multi-CSC",	"",							"group",
+	"AME",		"AME",			"France (unknown)",					"select.selected",
+	"MEO",		"MEO",			"Portugal (unknown)",					"select",
+	"SFR",		"SFR",			"France SFR branded",					"select"
+);
+endif;
+if prop("csc.prop","CSC")=="CHE" then
+form(
+    "Multi-CSC",
+    "You have selected a multi-csc!",
+    "icons/install",
+    "cscmulti.prop",
+  #
+  # Type:
+  #  - group              = Group
+  #  - select             = Select Item
+  #  - select.selected    = Selected Select Item
+  #  - check              = Checkbox Item
+  #  - check.checked      = Checked Checkbox Item
+  #  - hide               = Hidden
+  #
+  #-------------+-----------------------[ Selectbox Without Group ]------------------------------#
+  # PROP ID     | TITLE            |  SUBTITLE                                   |    Type       #
+  #-------------+--------+-------------------------------------------------------+---------------#
+	"CSC",		"Chile Multi-CSC",	"",							"group",
+	"CHE",		"CHE",			"Chile Entel PCS branded (default)",			"select.selected",
+	"CHV",		"CHV",			"Chile VTR branded",					"select",
+	"CHX",		"CHX",			"Chile Nextel branded",					"select"
+);
+endif;
+if prop("csc.prop","CSC")=="DBT" then
+form(
+    "Multi-CSC",
+    "You have selected a multi-csc!",
+    "icons/install",
+    "cscmulti.prop",
+  #
+  # Type:
+  #  - group              = Group
+  #  - select             = Select Item
+  #  - select.selected    = Selected Select Item
+  #  - check              = Checkbox Item
+  #  - check.checked      = Checked Checkbox Item
+  #  - hide               = Hidden
+  #
+  #-------------+-----------------------[ Selectbox Without Group ]------------------------------#
+  # PROP ID     | TITLE            |  SUBTITLE                                   |    Type       #
+  #-------------+--------+-------------------------------------------------------+---------------#
+	"CSC",		"OMC Multi-CSC",	"",							"group",
+	"ACR",		"ACR",			"Ghana unbranded",					"select",
+	"AFG",		"AFG",			"Afghanistan unbranded",				"select",
+	"AFR",		"AFR",			"Kenya unbranded",					"select",
+	"ARO",		"ARO",			"Argentinia unbranded",					"select",
+	"ATO",		"ATO",			"Open Austria unbranded",				"select",
+	"AUT",		"AUT",			"Switzerland unbranded",				"select",
+	"BGL",		"BGL",			"Bulgaria unbranded",					"select",
+	"BNG",		"BNG",			"Bangladesh unbranded",					"select",
+	"BRI",		"BRI",			"Taiwan unbranded",					"select",
+	"BTC",		"BTC",			"Libya unbranded",					"select",
+	"BTU",		"BTU",			"United Kingdom unbranded",				"select",
+	"CAC",		"CAC",			"Uzbekistan unbranded",					"select",
+	"CAM",		"CAM",			"Cambodia unbranded",					"select",
+	"CEL",		"CEL",			"Isreal Cellcom branded",				"select",
+	"CHO",		"CHO",			"Chile unbranded",					"select",
+	"COO",		"COO",			"Colombia unbranded",					"select",
+	"CPW",		"CPW",			"United Kingdom (unknown)",				"select",
+	"DBT",		"DBT",			"Germany unbranded (default)",				"select.selected",
+	"DKR",		"DKR",			"Senegal unbranded",					"select",
+	"ECT",		"ECT",			"Nigeria unbranded",					"select",
+	"EGY",		"EGY",			"Egypt unbranded",					"select",
+	"EON",		"EON",			"Trinidad and Tobago unbranded",			"select",
+	"ETL",		"ETL",			"Czech Republic unbranded",				"select",
+	"EUR",		"EUR",			"Greece unbranded",					"select",
+	"GLB",		"GLB",			"Philippines Globe branded",				"select",
+	"ILO",		"ILO",			"Israel unbranded",					"select",
+	"INS",		"INS",			"Indian unbranded",					"select",
+	"ITV",		"ITV",			"Italy unbranded",					"select",
+	"KSA",		"KSA",			"Saudi Arabia unbranded",				"select",
+	"LAO",		"LAO",			"Thailand (unknown)",					"select",
+	"LUX",		"LUX",			"Luxembourg unbranded",					"select",
+	"LYS",		"LYS",			"United Arab Emirates unbranded",			"select",
+	"MAT",		"MAT",			"Morrocco MAT branded",					"select",
+	"MID",		"MID",			"Iraq unbranded",					"select",
+	"MM1",		"MM1",			"Singapore MM1 branded",				"select",
+	"MWD",		"MWD",			"Morrocco unbranded",					"select",
+	"MYM",		"MYM",			"Thailand (unknown)",					"select",
+	"NEE",		"NEE",			"Nordic Countries unbranded",				"select",
+	"NPL",		"NPL",			"Nepal unbranded",					"select",
+	"ORX",		"ORX",			"Slovakia unbranded",					"select",
+	"PAK",		"PAK",			"Pakistan unbranded",					"select",
+	"PCL",		"PCL",			"Israel Pelephone branded",				"select",
+	"PHE",		"PHE",			"Spain unbranded",					"select",
+	"PHN",		"PHN",			"Netherlands unbranded",				"select",
+	"PTR",		"PTR",			"Israel Orange and Partner branded",			"select",
+	"ROM",		"ROM",			"Romania unbranded",					"select",
+	"SEB",		"SEB",			"Latvia unbranded",					"select",
+	"SEE",		"SEE",			"South East Europe unbranded",				"select",
+	"SEK",		"SEK",			"Ukraine unbranded",					"select",
+	"SER",		"SER",			"Russia unbranded",					"select",
+	"SIN",		"SIN",			"Singapore SingTel branded",				"select",
+	"SMA",		"SMA",			"Philippines Smart branded",				"select",
+	"SMP",		"SMP",			"WorldWide Telecom branded",				"select",
+	"STH",		"STH",			"Singapore StarHub branded",				"select",
+	"SKZ",		"SKZ",			"Kazakhstan unbranded",					"select",
+	"SLK",		"SLK",			"Srilanka unbranded",					"select",
+	"TEB",		"TEB",			"Bosnia and Herzegovina unbranded",			"select",
+	"THL",		"THL",			"Thailand unbranded",					"select",
+	"THR",		"THR",			"Iran unbranded",					"select",
+	"TMC",		"TMC",			"Algeria unbranded",					"select",
+	"TPA",		"TPA",			"Panama unbranded",					"select",
+	"TPH",		"TPH",			"Portugal unbranded",					"select",
+	"TTT",		"TTT",			"Trinidad and Tobago unbranded",			"select",
+	"TUN",		"TUN",			"Tunisia unbranded",					"select",
+	"TUR",		"TUR",			"Turkey unbranded",					"select",
+	"WTL",		"WTL",			"Saudi Arabia unbranded",				"select",
+	"XEF",		"XEF",			"France unbranded",					"select",
+	"XEH",		"XEH",			"Hungary unbranded",					"select",
+	"XEO",		"XEO",			"Poland unbranded",					"select",
+	"XEU",		"XEU",			"United Kingdom EE & Three branded",			"select",
+	"XFA",		"XFA",			"South Africa unbranded",				"select",
+	"XFE",		"XFE",			"South Africa unbranded",				"select",
+	"XME",		"XME",			"Malaysia unbranded",					"select",
+	"XSG",		"XSG",			"United Arab Emirates unbranded",			"select",
+	"XSP",		"XSP",			"Singapore unbranded",					"select",
+	"XTC",		"XTC",			"Philippines Open Line branded",			"select",
+	"XXV",		"XXV",			"Vietnam unbranded",					"select",
+	"ZTO",		"ZTO",			"Brazil unbranded",					"select"
+);
+endif;
+if prop("csc.prop","CSC")=="DTM" then
+form(
+    "Multi-CSC",
+    "You have selected a multi-csc!",
+    "icons/install",
+    "cscmulti.prop",
+  #
+  # Type:
+  #  - group              = Group
+  #  - select             = Select Item
+  #  - select.selected    = Selected Select Item
+  #  - check              = Checkbox Item
+  #  - check.checked      = Checked Checkbox Item
+  #  - hide               = Hidden
+  #
+  #-------------+-----------------------[ Selectbox Without Group ]------------------------------#
+  # PROP ID     | TITLE            |  SUBTITLE                                   |    Type       #
+  #-------------+--------+-------------------------------------------------------+---------------#
+	"CSC",		"T- Mobile Multi-CSC",	"",							"group",
+	"COA",		"COA",			"Romania Cosmote branded",				"select",
+	"COS",		"COS",			"Greece Cosmote branded",				"select",
+	"CRO",		"CRO",			"Croatia T-Mobile branded",				"select",
+	"DCO",		"DCO",			"Germany Congstar branded",				"select",
+	"DHR",		"DHR",			"Croatia Bonbon branded",				"select",
+	"DNL",		"DNL",			"Netherlands Ben NL branded",				"select",
+	"DPL",		"DPL",			"Poland Heyah branded",					"select",
+	"DTM",		"DTM",			"Germany T-Mobile branded",				"select.selected",
+	"MAX",		"MAX",			"Austria T-Mobile branded",				"select",
+	"MBM",		"MBM",			"Macedonia T-Mobile branded",				"select",
+	"TMH",		"TMH",			"Hungary T-Mobile branded",				"select",
+	"TMS",		"TMS",			"Slovakia T-Mobile branded",				"select",
+	"TMZ",		"TMZ",			"Czech Republic T-Mobile branded",			"select",
+	"TNL",		"TNL",			"Netherlands T-Mobile branded",				"select",
+	"TPL",		"TPL",			"Poland T-Mobile branded",				"select",
+	"TRG",		"TRG",			"Austria Telering branded",				"select"
+);
+endif;
+if prop("csc.prop","CSC")=="FTM" then
+form(
+    "Multi-CSC",
+    "You have selected a multi-csc!",
+    "icons/install",
+    "cscmulti.prop",
+  #
+  # Type:
+  #  - group              = Group
+  #  - select             = Select Item
+  #  - select.selected    = Selected Select Item
+  #  - check              = Checkbox Item
+  #  - check.checked      = Checked Checkbox Item
+  #  - hide               = Hidden
+  #
+  #-------------+-----------------------[ Selectbox Without Group ]------------------------------#
+  # PROP ID     | TITLE            |  SUBTITLE                                   |    Type       #
+  #-------------+--------+-------------------------------------------------------+---------------#
+	"CSC",		"Orange Multi-CSC",	"",							"group",
+	"AMO",		"AMO",			"Spain Orange branded ",				"select",
+	"FTM",		"FTM",			"France Orange branded (default)",			"select.selected",
+	"OPV",		"OPV",			"Poland Orange branded",				"select",
+	"ORO",		"ORO",			"Romania Orange branded",				"select",
+	"ORS",		"ORS",			"Slovakia Orange branded",				"select"
+);
+endif;
+if prop("csc.prop","CSC")=="O2U" then
+form(
+    "Multi-CSC",
+    "You have selected a multi-csc!",
+    "icons/install",
+    "cscmulti.prop",
+  #
+  # Type:
+  #  - group              = Group
+  #  - select             = Select Item
+  #  - select.selected    = Selected Select Item
+  #  - check              = Checkbox Item
+  #  - check.checked      = Checked Checkbox Item
+  #  - hide               = Hidden
+  #
+  #-------------+-----------------------[ Selectbox Without Group ]------------------------------#
+  # PROP ID     | TITLE            |  SUBTITLE                                   |    Type       #
+  #-------------+--------+-------------------------------------------------------+---------------#
+	"CSC",		"O2 Multi-CSC",	"",								"group",
+	"O2U",		"O2U",			"United Kingdom O2 branded",				"select.selected",
+	"XEC",		"XEC",			"Spain Movistar branded",				"select"
+);
+endif;
+if prop("csc.prop","CSC")=="SKC" then
+form(
+    "Multi-CSC",
+    "You have selected a multi-csc!",
+    "icons/install",
+    "cscmulti.prop",
+  #
+  # Type:
+  #  - group              = Group
+  #  - select             = Select Item
+  #  - select.selected    = Selected Select Item
+  #  - check              = Checkbox Item
+  #  - check.checked      = Checked Checkbox Item
+  #  - hide               = Hidden
+  #
+  #-------------+-----------------------[ Selectbox Without Group ]------------------------------#
+  # PROP ID     | TITLE            |  SUBTITLE                                   |    Type       #
+  #-------------+--------+-------------------------------------------------------+---------------#
+	"CSC",		"Korea Multi-CSC",	"",							"group",
+	"KTC",		"KTC",			"KT Corporation branded",				"select",
+	"LUC",		"LUC",			"LG Uplus branded",					"select",
+	"SKC",		"SKC",			"SK Telecom branded (default)",				"select.selected"
+);
+endif;
+if prop("csc.prop","CSC")=="UPO" then
+form(
+    "Multi-CSC",
+    "You have selected a multi-csc!",
+    "icons/install",
+    "cscmulti.prop",
+  #
+  # Type:
+  #  - group              = Group
+  #  - select             = Select Item
+  #  - select.selected    = Selected Select Item
+  #  - check              = Checkbox Item
+  #  - check.checked      = Checked Checkbox Item
+  #  - hide               = Hidden
+  #
+  #-------------+-----------------------[ Selectbox Without Group ]------------------------------#
+  # PROP ID     | TITLE            |  SUBTITLE                                   |    Type       #
+  #-------------+--------+-------------------------------------------------------+---------------#
+	"CSC",		"Paraguay Multi-CSC",	"",							"group",
+	"ALE",		"ALE",			"Ecuador unbranded",					"select",
+	"ANC",		"ANC",			"Argentina unbranded",					"select",
+	"BVO",		"BVO",			"Bolivia unbranded",					"select",
+	"PEO",		"PEO",			"Peru unbranded",					"select",
+	"PNT",		"PNT",			"Peru Nextel branded",					"select",
+	"PSN",		"PSN",			"Argentina Personal branded",				"select",
+	"PSP",		"PSP",			"Paraguay Personal branded",				"select",
+	"PVT",		"PVT",			"Peru Viettel branded",					"select",
+	"UPO",		"UPO",			"Uruguay unbranded (default)",				"select.selected",
+	"UYO",		"UYO",			"Uruguay (unknown)",					"select"
+);
+endif;
+if prop("csc.prop","CSC")=="VD2" then
+form(
+    "Multi-CSC",
+    "You have selected a multi-csc!",
+    "icons/install",
+    "cscmulti.prop",
+  #
+  # Type:
+  #  - group              = Group
+  #  - select             = Select Item
+  #  - select.selected    = Selected Select Item
+  #  - check              = Checkbox Item
+  #  - check.checked      = Checked Checkbox Item
+  #  - hide               = Hidden
+  #
+  #-------------+-----------------------[ Selectbox Without Group ]------------------------------#
+  # PROP ID     | TITLE            |  SUBTITLE                                   |    Type       #
+  #-------------+--------+-------------------------------------------------------+---------------#
+	"CSC",		"Vodafone Multi-CSC",	"",							"group",
+	"ATL",		"ATL",			"Spain Vodafone branded",				"select",
+	"AVF",		"AVF",			"Albania Vodafone branded",				"select",
+	"CNX",		"CNX",			"Romania Vodafone branded",				"select",
+	"CYV",		"CYV",			"Cyprus Vodafone branded",				"select",
+	"MOB",		"MOB",			"Austria A1 branded",					"select",
+	"MTL",		"MTL",			"Bulgaria MTL branded",					"select",
+	"OMN",		"OMN",			"Italy Vodafone branded",				"select",
+	"PRO",		"PRO",			"Belgium Proximus branded ",				"select",
+	"SIM",		"SIM",			"Slovenia Si.mobile branded",				"select",
+	"SWC",		"SWC",			"Switzerland Swisscom branded",				"select",
+	"TCL",		"TCL",			"Portugal Vodafone branded",				"select",
+	"VD2",		"VD2",			"Germany Vodafone branded (default)",			"select.selected",
+	"VDC",		"VDC",			"Czech Republic Vodafone branded",			"select",
+	"VDF",		"VDF",			"Netherlands Vodafone branded",				"select",
+	"VDH",		"VDH",			"Hungary Vodafone branded",				"select",
+	"VDI",		"VDI",			"Ireland Vodafone branded",				"select",
+	"VGR",		"VGR",			"Greece Vodafone branded",				"select",
+	"VIP",		"VIP",			"Croatia VIP-Net branded",				"select",
+	"VOD",		"VOD",			"United Kingdom Vodafone branded",			"select",
+	"XFV",		"XFV",			"South Africa Vodafone branded",			"select"
+);
+endif;
+if prop("csc.prop","CSC")=="XAA" then
+form(
+    "Multi-CSC",
+    "You have selected a multi-csc!",
+    "icons/install",
+    "cscmulti.prop",
+  #
+  # Type:
+  #  - group              = Group
+  #  - select             = Select Item
+  #  - select.selected    = Selected Select Item
+  #  - check              = Checkbox Item
+  #  - check.checked      = Checked Checkbox Item
+  #  - hide               = Hidden
+  #
+  #-------------+-----------------------[ Selectbox Without Group ]------------------------------#
+  # PROP ID     | TITLE            |  SUBTITLE                                   |    Type       #
+  #-------------+--------+-------------------------------------------------------+---------------#
+	"CSC",		"USA Multi-CSC",	"",							"group",
+	"ACG",		"ACG",			"Nextech / C-Spire branded",				"select",
+	"ATT",		"ATT",			"AT&T branded",						"select",
+	"BST",		"BST",			"BST (unknown)",					"select",
+	"CCT",		"CCT",			"Comcast branded",					"select",
+	"GCF",		"GCF",			"GCF (unknown)",					"select",
+	"LRA",		"LRA",			"Bluegrass Cellular branded",				"select",
+	"SPR",		"SPR",			"Sprint (CDMA) branded",				"select",
+	"TFN",		"TFN",			"Tracfone branded ",					"select",
+	"TMB",		"TMB",			"T-Mobile branded",					"select",
+	"USC",		"USC",			"USA unbranded",					"select",
+	"VMU",		"VMU",			"Virgin Mobile USA branded",				"select",
+	"VZW",		"VZW",			"Verizon branded",					"select",
+	"XAA",		"XAA",			"USA unbranded (default)",				"select.selected",
+	"XAS",		"XAS",			"XAS (unknown)",					"select"
+);
+endif;
+if prop("csc.prop","CSC")=="XAC" then
+form(
+    "Multi-CSC",
+    "You have selected a multi-csc!",
+    "icons/install",
+    "cscmulti.prop",
+  #
+  # Type:
+  #  - group              = Group
+  #  - select             = Select Item
+  #  - select.selected    = Selected Select Item
+  #  - check              = Checkbox Item
+  #  - check.checked      = Checked Checkbox Item
+  #  - hide               = Hidden
+  #
+  #-------------+-----------------------[ Selectbox Without Group ]------------------------------#
+  # PROP ID     | TITLE            |  SUBTITLE                                   |    Type       #
+  #-------------+--------+-------------------------------------------------------+---------------#
+	"CSC",		"Canada Multi-CSC",	"",							"group",
+	"BMC",		"BMC",			"Bell Mobile branded",					"select",
+	"BWA",		"BWA",			"SaskTel branded",					"select",
+	"CHR",		"CHR",			"Canada (unknown)",					"select",
+	"ESK",		"ESK",			"EastLink branded",					"select",
+	"FMC",		"FMC",			"Fido Mobile branded",					"select",
+	"GLW",		"GLW",			"Globalive Wind Mobile branded",			"select",
+	"KDO",		"KDO",			"Koodo Mobile branded",					"select",
+	"MTB",		"MTB",			"Belarus branded",					"select",
+	"RWC",		"RWC",			"Rogers branded",					"select",
+	"TLS",		"TLS",			"Telus branded",					"select",
+	"VMC",		"VMC",			"Virgin Mobile branded",				"select",
+	"VTR",		"VTR",			"Vidéotron branded",					"select",
+	"XAC",		"XAC",			"Canada unbranded (default)",				"select.selected"
+);
+endif;
+
+#################################################################################################################################################################
+
+# csctweaks.prop Form
+#
+
+form(
+    "CSC Features",
+    "Choose which CSC features you want to enable",
+    "@install",
+    "csctweaks.prop",
+  #
+  # Type:
+  #  - group              = Group
+  #  - select             = Select Item
+  #  - select.selected    = Selected Select Item
+  #  - check              = Checkbox Item
+  #  - check.checked      = Checked Checkbox Item
+  #  - hide               = Hidden
+  #
+  #-------------+-----------------------[ Selectbox Without Group ]------------------------------#
+  # PROP ID     | TITLE            |  SUBTITLE                                   |    Type       #
+  #-------------+--------+-------------------------------------------------------+---------------#
+	"csc",		"Select csc mods",		"",											"group",
+	"cameracall",	"Camera during call",		"Enables camera while calling, can be used even during the call",			"check",
+	"camerashutter","Camera Shutter",		"Enables sound menu in camera settings to adjust shutter",				"check",
+	"airmessage",	"Air Message",			"Adds AirMessage to default settings",							"check",
+	"savesms",	"SMS backup",			"Enables backup for sms inside the default messaging app",				"check",
+	"disablemms",	"SMS to MMS convertion",	"Disables auto conversion from sms to mms",						"check",
+	"smstweaks",	"More SMS options",		"Enables delivery/sent time of sms, resize quality of imgs",				"check",
+	"blockmenu",	"Call blocking",		"Enables an additional setting to adjust blocking numbers",				"check",
+	"networkspeed",	"Network Speed",		"Adds a settings entry to enable network traffic speed",				"check",
+	"lteonly",	"LTE Only",			"Enables LTE only mode in connection settings",						"check",
+	"smartmanager",	"SmartManager tweaks",		"Enables various things, for example Applock, trafficmanager, data saving and more",	"check",
+	"recent",	"Recent App Protection",	"",											"check",
+	"datausage",	"Data Usage",			"Shows data usage in pulldown menu",							"check",
+	"recording",	"Call Recorder",		"Enables call recorder inside the phone app",						"check",
+	"wifi",		"Advanced wifi",		"Enables an additional wifi settings menu",						"check"
+);
+#################################################################################################################################################################
+checkbox(
+	  "Bloat",
+	  "Select Which Apps You Want",
+	  "icons/personalize",
+	  "bloat.prop",
+
+	  "Select Which Apps You Want To Install :",	"",	                               		                            					2, #-- Group 1
+	  "Google Chrome",				"",	0,	
+	  "Samsung SVoice",      			"",			0,	
+      "Google App",      			"",			0,	
+	  "Allshare And Quick Connect",      			"",			0,	
+      "Youtube",      			"",			0,	
+      "Ant Services",      			"",			0,	
+      "Gear Manager",      			"Select Ant Services Too Please",			0,	
+	  "Flipboard",      			"",			0,	
+	  "Carmode",      			"",			0,	
+	  "Samsung Cloud",      			"",			0,	
+	  "Magnifier",      			"",			0,	
+	  "Game Home & Tools",      			"",			0,	
+	  "Pell Smart Remote",      			"",			0,
+	  "Google Maps",      			"",			0,
+	  "Adaptive Sound Detector",      			"",			0,
+	  "Email",      			"",			0,
+	  "SHealth",                 "",         0, 
+	  "Edge Panel",                 "",         0, 
+	  "Clock",                 "",         0, 
+	  "SBrowser",                 "",         0, 
+	  "Memo",                 "Samsung Note App",         0, 
+	  "Easy One Hand & Easy Launcher",                 "",         0, 
+	  "Galaxy Apps",                 "",         0, 
+	  "Galaxy Themes",                 "",         0, 
+	  "IMS Telephony & VoLTE Apks",                 "",         0, 
+	  "Calculator",                 "",         0, 
+	  "Gallery",                 "",         0, 
+	  "My Files",                 "Samsung File Manager",         0, 
+	  "Samsung Video List",                 "",         0, 
+	  "SoundAlive",                 "",         0, 
+	  "Smart Manager",                 "",         0, 
+	  "Callendar",                 "",         0,
+	  "Samsung Account",                 "",         0
+);
+
+#addons
+selectbox(
+			"Addons option",
+			"Choose Addons that you want to install:",
+			"@customize",
+			"addons.prop",
+			
+			"<#009485>Secure Folder</#>",	"",         				        							               	2,	#-- Group 1
+			"Yes,I want Secure Folder",				                                          "",			        0,	#-- selected.1 = 1
+			"No,I dont want Secure Folder",				                                          "",			            1,	#-- selected.1 = 2
+			
+			"<#009485>Select TouchWiz Launcher You Want</#>",	"",        				        							               	2,	#-- Group 2
+			"GrxTouchWiz V6",				               "Install GrxTouchwiz With A Lot Of Customizations",			            1,	#-- selected.2 = 1
+			"Stock TouchWiz Launcher ",					           "Install Stock S8 Launcher",					        0,	#-- selected.2 = 2
+			
+			"<#009485>Select Sound Mod You Want</#>",	"",        				        							               	2,	#-- Group 3
+			"Alexis Surround Sound Mod",				               "Boom Sound Surround Sound Mod by @AlexisXda",			            1,	#-- selected.3 = 1
+			"Stock Sound",					           "",					        0,	#-- selected.3 = 2
+		
+			"<#009485>Select Which Font You Want :</#>",	"",	                               		                            					2, #-- Group 4
+	        "Stock",				"",	1,	#-- selected.4 = 1
+	        "Light Font Package",      			"Light Font Package",			0,	#-- selected.4 = 2
+            "Full Fonts Package",      			"1120+ Fonts",			0	#-- selected.4 = 3
+			
+		);
+#################################################################################################################################################################
+selectbox(
+	  "Viper4Android & Dolby",
+	  "Do You Want To Install Divine Beats ",
+	  "icons/update",
+	  "sound.prop",
+
+	  "Do You Want To Install DivineBeats :",	"",	                               		                            					2, #-- Group 1. key = "selected.1"
+	  "Yes,Install DivineBeats",				"Viper4Android & Dolby",	1,	#-- selected.1 = 1
+	  "No,Dont Install DivineBeats",      			"",			0	#-- selected.1 = 2
+	 
+);
+############################################################################################################################################################
+selectbox(
+	  "Emoji",
+	  "Select Which Emoji You Want",
+	  "icons/update",
+	  "emoji.prop",
+
+	  "<#009485>Select Which Emoji You Want :</#>",	"",	                               		                            					2, #-- Group 1. key = "selected.1"
+	  "IOS10.3 Emoji",				"",	1,	#-- selected.1 = 1
+	  "IOS10.3 Flat Emoji",      			"",			0,	#-- selected.1 = 2
+      "Windows 10 Emoji",      			"",			0,	#-- selected.1 = 3
+	  "HTC10 Emoji",				"",	1,	#-- selected.1 = 4
+	  "Twitter Emoji",      			"",			0,	#-- selected.1 = 5
+      "Facebook Emoji",      			"",			0,	#-- selected.1 = 6	  
+	  "Samsung 7.0 Emoji",				"",	1,	#-- selected.1 = 7
+	  "Nougat 7.1.1 Emoji",      			"",			0	#-- selected.1 = 8
+	  
+);
+#################################################################################################################################################################
+# SuperSU
+
+	selectbox(
+			"<#009485>SuperSU Magisk and BusyBox</#>",
+			"Do you want to install?",
+			"@customize",
+			"supersu.prop",
+		  
+			"Select one",	"",         				        							               	2,	#-- Group 1. key = "selected.1"
+			"Yes",				                                          "Install SuperSU and BusyBox",			        0,	#-- selected.1 = 1
+			"Yes",				                                          "Install Magisk and BusyBox",			            1,	#-- selected.1 = 2
+			"No",					                                      "Don't Install",					                0	#-- selected.1 = 3
+		);
+#################################################################################################################################################################
+
+viewbox(
+"NOW THE INSTALLATION READY TO START",
+"PRESS NEXT TO CONTINUE TO START\n"+
+"TO CHANGE YOUR OPTIONS PRESS BACK",
+"@flashing"
+);
+#################################################################################################################################################################
+setvar("retstatus",
+install(
+"",
+"PLEASE WAIT WHILE INSTALLATION FINISHING INSTALLING <b>"+ini_get("rom_name")+
+"</b> THIS PROCESS WILL TAKE SOME TIME",	
+"@install",	
+"THE INSTALLATION FINISHED FROM INSTALLING <b>"+ini_get("rom_name")+
+"</b> PRESS NEXT TO CONTINUE"
+)
+);
+#################################################################################################################################################################
+checkviewbox(
+"",
+"<#selectbg_g><b>INSTALLTION COMPLETED</b></#>\n\n"+
+"<b>"+ini_get("rom_name")+"</b> NOW INSTALLED IN YOUR PHONE",
+"@welcome",
+"REBOOT DEVICE",
+"0",
+"reboot_it"
+);
+if
+getvar("reboot_it")=="0"
+then
+reboot("onfinish");
+endif;
